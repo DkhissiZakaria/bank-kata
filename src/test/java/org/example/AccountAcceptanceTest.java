@@ -32,10 +32,10 @@ public class AccountAcceptanceTest {
         String actualOutput = consoleOutput.toString();
 
         Assertions.assertTrue(actualOutput.contains("14/01/2012 || -500   || 2500"),
-                "Manque la transaction du 14/01/2012");
+                "Missing the transaction from 14/01/2012");
         Assertions.assertTrue(actualOutput.contains("13/01/2012 || 2000   || 3000"),
-                "Manque la transaction du 13/01/2012");
+                "Missing the transaction from 13/01/2012");
         Assertions.assertTrue(actualOutput.contains("10/01/2012 || 1000   || 1000"),
-                "Manque la transaction du 10/01/2012");
+                "Missing the transaction from 10/01/2012");
     }
 }
