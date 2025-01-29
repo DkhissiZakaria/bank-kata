@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.account.Account;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -10,15 +11,15 @@ public class AccountAcceptanceTest {
 
     @Test
     public void should_print_statement_in_reverse_chronological_order() {
-        AccountService account = new Account();
+        Account account = new Account();
 
-        ((Account) account).setDate("10/01/2012");
+        account.setDate("10/01/2012");
         account.deposit(1000);
 
-        ((Account) account).setDate("13/01/2012");
+        account.setDate("13/01/2012");
         account.deposit(2000);
 
-        ((Account) account).setDate("14/01/2012");
+        account.setDate("14/01/2012");
         account.withdraw(500);
 
         ByteArrayOutputStream consoleOutput = new ByteArrayOutputStream();

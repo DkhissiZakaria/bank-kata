@@ -1,4 +1,4 @@
-package org.example;
+package org.example.account;
 
 public class Transaction {
     private final String date;
