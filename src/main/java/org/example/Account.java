@@ -1,5 +1,8 @@
 package org.example;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +17,14 @@ public class Account implements AccountService {
      * but useful for reproducing the scenario in tests).
      */
     public void setDate(String date) {
-        this.currentDate = date;
+        try {
+            LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            this.currentDate = date;
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("Invalid date format. Use dd/MM/yyyy.");
+        }
     }
+
 
     @Override
     public void deposit(int amount) {
@@ -25,6 +34,9 @@ public class Account implements AccountService {
 
     @Override
     public void withdraw(int amount) {
+        if (balance - amount < 0) {
+            throw new IllegalArgumentException("Insufficient balance for withdrawal");
+        }
         balance -= amount;
         transactions.add(new Transaction(currentDate, -amount, balance));
     }
@@ -37,7 +49,7 @@ public class Account implements AccountService {
             String date = t.getDate();
             int amount = t.getAmount();
             int balanceAtThatTime = t.getBalanceAfterTransaction();
-            System.out.println(date + " || " + amount + "  " + " || " + balanceAtThatTime);
+            System.out.printf("%-10s || %-6d || %-6d%n", date, amount, balanceAtThatTime);
         }
     }
 }
