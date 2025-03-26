@@ -15,6 +15,12 @@ public class Main {
         account.withdraw(500);
 
         account.printStatement();
+        account.printStatement();
+
+        account.printStatement();
+
+        account.printStatement();
+
 
     }
 }
